@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <!-- 根元素mapper,属性namespace的值是mapper接口的全名 -->
+<mapper namespace="tarena.com.dao.NoteMapper">
+	<insert id="addnote" parameterType="tarena.com.entity.Note">
+		insert into cn_note values(#{cn_note_id},#{cn_notebook_id},#{cn_user_id},
+		#{cn_note_status_id},#{cn_note_type_id},#{cn_note_title},#{cn_note_body},
+		#{cn_note_create_time},#{cn_note_last_modify_time})
+	</insert>
+	
+	<select id="findnote" parameterType="tarena.com.entity.Note" resultType="tarena.com.entity.Note">
+	select * from cn_note where cn_notebook_id=#{notebookid};
+	</select>
+	<update id="updatenote" parameterType="tarena.com.entity.Note">
+	update cn_note set cn_notebook_id=#{cn_notebook_id},
+	cn_note_type_id=#{cn_note_type_id},cn_note_title=#{cn_note_title},
+	cn_note_body=#{cn_note_body},
+	cn_note_last_modify_time=#{cn_note_last_modify_time},cn_note_status_id=#{cn_note_status_id}
+	where cn_note_id=#{cn_note_id}	
+	</update>
+
+	<select id="findonenote" parameterType="tarena.com.entity.Note" resultType="tarena.com.entity.Note">
+	select * from cn_note where cn_note_id=#{noteid};
+	</select>
+	
+	<delete id="deletenote" parameterType="tarena.com.entity.Note">
+	delete from cn_note where cn_note_id=#{noteid};
+	</delete>
+	
+	<select id="findacnote" parameterType="tarena.com.entity.Note" resultType="tarena.com.entity.Note">
+	select * from cn_note where cn_note_status_id=#{status}
+	</select>
+</mapper>

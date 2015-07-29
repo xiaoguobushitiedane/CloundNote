@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>emp_list.html</title>
+     <meta  charset="UTF-8">
+	<script type="text/javascript" src="js/jquery-1.11.2.js"></script>
+    <script type="text/javascript">
+    	$(function(){
+    	//通过异步请求,查询数据
+    	//$post("发送请求地址","请求参数","发送成功回调函数")
+    	$.post("/VSPRING-OBJ/emp/selectEmp.do",{},function(data){
+    	//回调函数的参数用来接收返回值
+    	//当前请求返回的数据格式[{},{},{}]
+    	//遍历数组
+    	$(data).each(function(){
+    	//每次循环是执行
+    	
+    	
+    	//在table中追加一行
+    	$("table").append("<tr></tr>");
+    	//在追加的行中追加4列
+    	//append()用于追加一些html标记到匹配元素的里边
+    	$("table tr:last").append("<td></td>");
+    	$("table tr:last td:last").text(this.empno);
+    	//text()--用于设置元素的文本内容
+    	$("table tr:last").append("<td></td>");
+    	$("table tr:last td:last").text(this.ename);
+    	
+    	$("table tr:last").append("<td></td>");
+    	$("table tr:last td:last").text(this.job);
+    	
+    	$("table tr:last").append("<td></td>");
+    	$("table tr:last td:last").text(this.mrg);
+    	
+    	
+    	});
+    	
+    	}
+    	);
+    	});
+    
+    </script>
+    
+
+  </head>
+  
+  <body>
+    <h1>员工信息表</h1>
+    <table>
+    	<tr>
+    		<th>empno</th>
+    		<th>ename</th>
+    		<th>job</th>
+    		<th>mrg</th>
+    	</tr>
+    </table>
+  </body>
+</html>

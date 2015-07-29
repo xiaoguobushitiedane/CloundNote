@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <!-- 根元素mapper,属性namespace的值是mapper接口的全名 -->
+<mapper namespace="tarena.com.dao.ShareMapper">
+	<insert id="addSharenote" parameterType="tarena.com.entity.ShareNote">
+	insert into cn_share values(#{cn_share_id},#{cn_share_title},
+	#{cn_share_body},#{cn_note_id});
+	</insert>
+
+	<select id="findAll" parameterType="hashmap" resultType="tarena.com.entity.ShareNote">
+												<!-- CONCAT('%',#{searchKey},'%') -->										
+	select * from cn_share where cn_share_title like CONCAT('%',#{title},'%') order by cn_share_title limit #{begin},
+	#{pagesize}
+	</select>
+	
+	<select id="findone" parameterType="tarena.com.entity.ShareNote" resultType="tarena.com.entity.ShareNote">
+	select * from cn_share where cn_note_id=#{noteid} 
+	
+	</select>
+	
+	<update id="updatefacnote" parameterType="tarena.com.entity.ShareNote">
+	update cn_share set cn_share_body=#{cn_share_body},
+	cn_share_id=#{cn_share_id},cn_share_title=#{cn_share_title}
+	where cn_note_id=#{cn_note_id}
+	</update>
+</mapper>

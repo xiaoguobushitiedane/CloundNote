@@ -1,0 +1,1 @@
+select * from l_emp order by deptno

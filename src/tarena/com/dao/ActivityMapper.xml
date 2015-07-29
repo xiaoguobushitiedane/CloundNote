@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <!-- 根元素mapper,属性namespace的值是mapper接口的全名 -->
+<mapper namespace="tarena.com.dao.ActivityMapper">
+	<select id="FindAll"  parameterType="tarena.com.entity.Activity" resultType="tarena.com.entity.Activity">
+	select * from cn_activity;
+	</select>
+	
+</mapper>
